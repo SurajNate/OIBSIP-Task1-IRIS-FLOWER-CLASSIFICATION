@@ -1,12 +1,17 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import pickle
 
 # Load the model
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    return joblib.load("Jupyter Files\iris_classifier_model.pkl")
+    with open("Jupyter Files/iris_classifier_model.pkl", "rb") as file:
+        model = pickle.load(file)
+    return model
+
+# Example usage
+model = load_model()
 
 # Load the dataset from a local file
 @st.cache_data
