@@ -37,6 +37,19 @@ sepal_width = st.sidebar.slider("Sepal Width (cm)", float(iris_df['SepalWidthCm'
 petal_length = st.sidebar.slider("Petal Length (cm)", float(iris_df['PetalLengthCm'].min()), float(iris_df['PetalLengthCm'].max()), 4.0)
 petal_width = st.sidebar.slider("Petal Width (cm)", float(iris_df['PetalWidthCm'].min()), float(iris_df['PetalWidthCm'].max()), 1.3)
 
+# Combine user inputs
+user_input = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+
+# Predict the species
+if st.button("Predict Species"):
+    try:
+        prediction = model.predict(user_input)
+        st.success(f"The predicted species is : **{prediction[0]}**.")
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
+        
+
+'''
 # User input as a DataFrame with placeholder Id
 user_input = pd.DataFrame({
     'Id': [1],  # Placeholder, ensure it's consistent with training data
@@ -45,16 +58,17 @@ user_input = pd.DataFrame({
     'PetalLengthCm': [petal_length],
     'PetalWidthCm': [petal_width]
 })
-
+'''
 
 st.subheader("User Input Measurements")
 st.write(user_input)
-
+'''
 # Predict the species
 if st.button("Predict Species"):
     prediction = model.predict(user_input)
     predicted_species = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}[prediction[0]]
     st.success(f"The predicted species is **{predicted_species}**.")
+'''
 
 # Visualize dataset
 st.subheader("Explore the Iris Dataset")
