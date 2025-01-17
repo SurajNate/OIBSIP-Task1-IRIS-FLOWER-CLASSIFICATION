@@ -10,14 +10,9 @@ import os
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    try:
-        model_file = 'Jupyter Files/Iris Flower Clasification.ipynb'
-        with open(model_file, 'rb') as f:
-            model = pickle.load(f)
-        return model
-    except Exception as e:
-        st.error(f"Error loading the model: {e}")
-        return None
+    with open('iris_model.pkl', 'rb') as f:
+    model = pickle.load(f)
+    print(f"Model loaded successfully: {type(model)}")
 
 # Load the dataset from a local file
 @st.cache_data
