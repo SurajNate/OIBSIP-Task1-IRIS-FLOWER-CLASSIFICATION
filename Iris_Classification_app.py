@@ -12,7 +12,7 @@ def load_model():
 @st.cache_data
 def load_dataset():
     """Load the Iris dataset from a local CSV file."""
-    iris_df = pd.read_csv("Jupyter Files\Iris.csv")
+    iris_df = pd.read_csv("Iris.csv")
     # Ensure correct column naming
     if 'Species' not in iris_df.columns:
         iris_df.rename(columns={'species': 'Species'}, inplace=True)
