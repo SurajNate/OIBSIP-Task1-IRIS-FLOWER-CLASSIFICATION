@@ -4,11 +4,18 @@ import pickle
 
 # Load the model
 @st.cache_resource
-def load_model():
+def load_model(filepath="Jupyter Files/iris_classifier_model.pkl"):
     """Load the trained model."""
-    with open("Jupyter Files/iris_classifier_model.pkl", "rb") as file:
-        model = pickle.load(file)
-    return model
+    try:
+        with open(filepath, "rb") as file:
+            model = pickle.load(file)
+        return model
+    except FileNotFoundError:
+        print(f"Error: The file '{filepath}' was not found.")
+    except pickle.UnpicklingError:
+        print(f"Error: The file '{filepath}' could not be unpickled.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 # Example usage
 model = load_model()
