@@ -1,4 +1,11 @@
 import streamlit as st
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+import pandas as pd
+import pickle
+import os
+
+import streamlit as st
 import pandas as pd
 import joblib
 
@@ -6,13 +13,13 @@ import joblib
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    return joblib.load("Jupyter Files\iris_classifier_model.pkl")
+    return joblib.load("iris_classifier_model.pkl")
 
 # Load the dataset from a local file
 @st.cache_data
 def load_dataset():
     """Load the Iris dataset from a local CSV file."""
-    iris_df = pd.read_csv("Jupyter Files\Iris.csv")
+    iris_df = pd.read_csv("Iris.csv")
     # Ensure correct column naming
     if 'Species' not in iris_df.columns:
         iris_df.rename(columns={'species': 'Species'}, inplace=True)
