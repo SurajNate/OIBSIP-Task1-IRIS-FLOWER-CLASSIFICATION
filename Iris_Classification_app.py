@@ -10,7 +10,7 @@ import pickle
 def load_model():
     """Load the trained model."""
     try:
-        with open('iris_model.pkl', 'rb') as f:
+        with open('iris_classifier_model.pkl', 'rb') as f:
             model = pickle.load(f)
     except Exception as e:
         print(f"Error loading the model: {e}")
