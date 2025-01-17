@@ -10,7 +10,7 @@ import os
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    with open('iris_model.pkl', 'rb') as f:
+    with open('iris_classifier_model.pkl', 'rb') as f:
     model = pickle.load(f)
     print(f"Model loaded successfully: {type(model)}")
 
