@@ -10,11 +10,16 @@ import pickle
 def load_model():
     """Load the trained model."""
     try:
-        with open('iris_classifier_model.pkl', 'rb') as f:
+        model_file = 'iris_model.pkl'
+        if not os.path.exists(model_file):
+            st.error(f"Model file '{model_file}' not found. Please check the path.")
+            return None
+        with open(model_file, 'rb') as f:
             model = pickle.load(f)
+        return model
     except Exception as e:
-        print(f"Error loading the model: {e}")
-        model = None
+        st.error(f"Error loading the model: {e}")
+        return None
 
 # Load the dataset from a local file
 @st.cache_data
