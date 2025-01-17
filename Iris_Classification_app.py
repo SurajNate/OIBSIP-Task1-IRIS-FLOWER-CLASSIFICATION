@@ -44,16 +44,15 @@ petal_width = st.sidebar.slider("Petal Width (cm)", float(iris_df['PetalWidthCm'
 # Combine user inputs
 user_input = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
 
-'''
-User input as a DataFrame with placeholder Id
-user_input = pd.DataFrame({
-    'Id': [1],  # Placeholder, ensure it's consistent with training data
-    'SepalLengthCm': [sepal_length],
-    'SepalWidthCm': [sepal_width],
-    'PetalLengthCm': [petal_length],
-    'PetalWidthCm': [petal_width]
-})
-'''
+#User input as a DataFrame with placeholder Id
+#user_input = pd.DataFrame({
+#    'Id': [1],  # Placeholder, ensure it's consistent with training data
+#    'SepalLengthCm': [sepal_length],
+#    'SepalWidthCm': [sepal_width],
+#    'PetalLengthCm': [petal_length],
+#    'PetalWidthCm': [petal_width]
+#})
+
 
 st.subheader("User Input Measurements")
 st.write(user_input)
