@@ -53,7 +53,8 @@ st.write(user_input)
 # Predict the species
 if st.button("Predict Species"):
     prediction = model.predict(user_input)
-    st.success(f"The predicted species is : **{prediction[0]}**.")
+    predicted_species = {0: 'Iris-setosa', 1: 'Iris-versicolor', 2: 'Iris-virginica'}[prediction[0]]
+    st.success(f"The predicted species is : **{predicted_species}**.")
 
 # Visualize dataset
 st.subheader("Explore the Iris Dataset")
