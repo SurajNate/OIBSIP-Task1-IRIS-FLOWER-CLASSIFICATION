@@ -9,8 +9,12 @@ import pickle
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    with open('iris_classifier_model.pkl', 'rb') as f:
+    try:
+    with open('iris_model.pkl', 'rb') as f:
         model = pickle.load(f)
+    except Exception as e:
+        print(f"Error loading the model: {e}")
+        model = None
 
 # Load the dataset from a local file
 @st.cache_data
