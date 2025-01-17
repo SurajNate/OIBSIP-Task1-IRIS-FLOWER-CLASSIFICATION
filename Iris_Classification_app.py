@@ -60,11 +60,10 @@ st.write(user_input)
 
 # Predict the species
 if st.button("Predict Species"):
-    try:
-        prediction = model.predict(user_input)
-        st.success(f"The predicted species is : **{prediction[0]}**.")
-    except Exception as e:
-        st.error(f"Error during prediction: {e}")
+    prediction = model.predict(user_input)
+    species_mapping = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}
+    predicted_species = species_mapping.get(prediction[0], "Unknown Species")
+    st.success(f"The predicted species is : **{predicted_species}**.")
 
 
 '''
