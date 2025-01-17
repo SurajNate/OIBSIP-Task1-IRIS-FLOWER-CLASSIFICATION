@@ -10,7 +10,7 @@ import pickle
 def load_model():
     """Load the trained model."""
     try:
-        model_file = 'iris_classifier_model.pkl'
+        model_file = 'Jupyter Files/Iris Flower Clasification.ipynb'
         if not os.path.exists(model_file):
             st.error(f"Model file '{model_file}' not found. Please check the path.")
             return None
