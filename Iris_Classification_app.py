@@ -1,10 +1,6 @@
-import streamlit as st
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
-import pandas as pd
 import pickle
-import os
-
 import streamlit as st
 import pandas as pd
 import joblib
