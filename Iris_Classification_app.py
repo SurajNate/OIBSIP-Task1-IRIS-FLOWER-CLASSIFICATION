@@ -6,7 +6,7 @@ import joblib
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    return joblib.load("Jupyter Files\iris_classifier_model.pkl")
+    return joblib.load("iris_classifier_model.pkl")
 
 # Load the dataset from a local file
 @st.cache_data
