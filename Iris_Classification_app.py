@@ -1,24 +1,12 @@
 import streamlit as st
 import pandas as pd
-import pickle
+import joblib
 
 # Load the model
 @st.cache_resource
-def load_model(filepath="Jupyter Files/iris_classifier_model.pkl"):
+def load_model():
     """Load the trained model."""
-    try:
-        with open(filepath, "rb") as file:
-            model = pickle.load(file)
-        return model
-    except FileNotFoundError:
-        print(f"Error: The file '{filepath}' was not found.")
-    except pickle.UnpicklingError:
-        print(f"Error: The file '{filepath}' could not be unpickled.")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-# Example usage
-model = load_model()
+    return joblib.load("Jupyter Files\iris_classifier_model.pkl")
 
 # Load the dataset from a local file
 @st.cache_data
