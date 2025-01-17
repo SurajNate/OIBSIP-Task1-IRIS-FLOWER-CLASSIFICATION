@@ -44,17 +44,14 @@ sepal_width = st.sidebar.slider("Sepal Width (cm)", float(iris_df['SepalWidthCm'
 petal_length = st.sidebar.slider("Petal Length (cm)", float(iris_df['PetalLengthCm'].min()), float(iris_df['PetalLengthCm'].max()), 4.0)
 petal_width = st.sidebar.slider("Petal Width (cm)", float(iris_df['PetalWidthCm'].min()), float(iris_df['PetalWidthCm'].max()), 1.3)
 
-# Combine user inputs
-user_input = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-
 #User input as a DataFrame with placeholder Id
-#user_input = pd.DataFrame({
-#    'Id': [1],  # Placeholder, ensure it's consistent with training data
-#    'SepalLengthCm': [sepal_length],
-#    'SepalWidthCm': [sepal_width],
-#    'PetalLengthCm': [petal_length],
-#    'PetalWidthCm': [petal_width]
-#})
+user_input = pd.DataFrame({
+    'Id': [1],  # Placeholder, ensure it's consistent with training data
+    'SepalLengthCm': [sepal_length],
+    'SepalWidthCm': [sepal_width],
+    'PetalLengthCm': [petal_length],
+    'PetalWidthCm': [petal_width]
+})
 
 
 st.subheader("User Input Measurements")
