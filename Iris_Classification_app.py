@@ -1,23 +1,21 @@
 import streamlit as st
-from sklearn.ensemble import RandomForestClassifier
-import numpy as np
 import pandas as pd
-import pickle
+import joblib
+from sklearn.ensemble import RandomForestClassifier
 
-
-# Load model using pickle
+# Load the model
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    with open("iris_classifier_model.pkl", 'rb') as file:
-        return pickle.load(file)
+    model = joblib.load("Jupyter Files/iris_classifier_model.pkl")
+    st.write(type(model))  # Check the model's type
+    return model
 
 # Load the dataset from a local file
 @st.cache_data
 def load_dataset():
     """Load the Iris dataset from a local CSV file."""
-    iris_df = pd.read_csv("Iris.csv")
-    # Ensure correct column naming
+    iris_df = pd.read_csv("Jupyter Files/Iris.csv")
     if 'Species' not in iris_df.columns:
         iris_df.rename(columns={'species': 'Species'}, inplace=True)
     return iris_df
@@ -39,20 +37,22 @@ petal_width = st.sidebar.slider("Petal Width (cm)", float(iris_df['PetalWidthCm'
 
 # User input as a DataFrame with placeholder Id
 user_input = pd.DataFrame({
-    'Id': [1],  # Placeholder, ensure it's consistent with training data
+    'Id': [1],
     'SepalLengthCm': [sepal_length],
     'SepalWidthCm': [sepal_width],
     'PetalLengthCm': [petal_length],
     'PetalWidthCm': [petal_width]
 })
 
-
 st.subheader("User Input Measurements")
 st.write(user_input)
 
-# Predict the species
+# Remove the 'Id' column from the input data before prediction
+user_input = user_input.drop('Id', axis=1)
+
+# Predict the species using the model's predict() method
 if st.button("Predict Species"):
-    prediction = model.predict(user_input)
+    prediction = model.predict(user_input)  # Using the 'predict' method of the model
     st.success(f"The predicted species is : **{prediction[0]}**.")
 
 # Visualize dataset
