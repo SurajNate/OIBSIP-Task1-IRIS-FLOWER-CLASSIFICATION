@@ -1,24 +1,18 @@
 import streamlit as st
-from sklearn.ensemble import RandomForestClassifier
-import numpy as np
 import pandas as pd
-import pickle
-import os
+import joblib
 
-
-# Load model using pickle
+# Load the model
 @st.cache_resource
 def load_model():
     """Load the trained model."""
-    with open('iris_classifier_model.pkl', 'rb') as f:
-        model = pickle.load(f)
-        print(f"Model loaded successfully: {type(model)}")
+    return joblib.load("Jupyter Files\iris_classifier_model.pkl")
 
 # Load the dataset from a local file
 @st.cache_data
 def load_dataset():
     """Load the Iris dataset from a local CSV file."""
-    iris_df = pd.read_csv("Iris.csv")
+    iris_df = pd.read_csv("Jupyter Files\Iris.csv")
     # Ensure correct column naming
     if 'Species' not in iris_df.columns:
         iris_df.rename(columns={'species': 'Species'}, inplace=True)
@@ -39,7 +33,7 @@ sepal_width = st.sidebar.slider("Sepal Width (cm)", float(iris_df['SepalWidthCm'
 petal_length = st.sidebar.slider("Petal Length (cm)", float(iris_df['PetalLengthCm'].min()), float(iris_df['PetalLengthCm'].max()), 4.0)
 petal_width = st.sidebar.slider("Petal Width (cm)", float(iris_df['PetalWidthCm'].min()), float(iris_df['PetalWidthCm'].max()), 1.3)
 
-#User input as a DataFrame with placeholder Id
+# User input as a DataFrame with placeholder Id
 user_input = pd.DataFrame({
     'Id': [1],  # Placeholder, ensure it's consistent with training data
     'SepalLengthCm': [sepal_length],
@@ -55,8 +49,7 @@ st.write(user_input)
 # Predict the species
 if st.button("Predict Species"):
     prediction = model.predict(user_input)
-    predicted_species = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}[prediction[0]]
-    st.success(f"The predicted species is **{predicted_species}**.")
+    st.success(f"The predicted species is : **{prediction[0]}**.")
 
 # Visualize dataset
 st.subheader("Explore the Iris Dataset")
