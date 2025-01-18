@@ -61,4 +61,4 @@ st.dataframe(iris_df)
 
 # Footer
 st.write("---")
-st.markdown("<p style='text-align: center;'>&copy; 2025 @suraj_nate All rights reserved.</p>", unsafe_allow_html=True)
+st.markdown('<center><a href="https://www.instagram.com/suraj_nate/" target="_blank" style="color:white;text-decoration:none">&copy; 2025 @suraj_nate All rights reserved.</a></center>', unsafe_allow_html=True)
